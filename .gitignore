@@ -1,2 +1,16 @@
 angular/node_modules/
-angular/drill
+angular/drill/src/assets
+angular/drill/src/environments
+angular/drill/README.md
+angular/drill/tsconfig.app.json
+angular/drill/tsconfig.json
+angular/drill/tsconfig.spec.json
+angular/drill/src/favicon.ico
+angular/drill/package.json
+angular/drill/package-lock.json
+angular/drill/karma.conf.js
+angular/drill/angular.json
+angular/drill/src/polyfills.ts
+angular/drill/.browserslistrc
+angular/drill/.editorconfig
+angular/drill/src/test.ts
