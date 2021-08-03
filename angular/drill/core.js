@@ -1,9 +1,25 @@
 const express = require('express')
 const cors = require('cors')
+const { stringify } = require('querystring')
 const app = express()
 const server = require('http').createServer(app)
 
-//app.use(cors())
+app.use(cors('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS'))
+app.use(express.json())
+
+var heroes = 
+[
+    { id: 11, name: 'Dr Nice' },
+    { id: 12, name: 'Narco' },
+    { id: 13, name: 'Bombasto' },
+    { id: 14, name: 'Celeritas' },
+    { id: 15, name: 'Magneta' },
+    { id: 16, name: 'RubberMan' },
+    { id: 17, name: 'Dynama' },
+    { id: 18, name: 'Dr IQ' },
+    { id: 19, name: 'Magma' },
+    { id: 20, name: 'Tornado' }
+];
 
 const corsOp = 
 {
@@ -18,18 +34,24 @@ server.listen(3000, () =>{
 app.get("/heroes", cors(corsOp), function(req, res)
 {
     console.log('heroes http get request')
-    const heroes = [
-        { id: 11, name: 'Dr Nice' },
-        { id: 12, name: 'Narco' },
-        { id: 13, name: 'Bombasto' },
-        { id: 14, name: 'Celeritas' },
-        { id: 15, name: 'Magneta' },
-        { id: 16, name: 'RubberMan' },
-        { id: 17, name: 'Dynama' },
-        { id: 18, name: 'Dr IQ' },
-        { id: 19, name: 'Magma' },
-        { id: 20, name: 'Tornado' }
-      ];
-      console.log(heroes)
-      res.json(heroes)
+    //console.log(heroes)
+    res.json(heroes)
+})
+
+app.put("/heroUpdate", cors(corsOp), function(req, res)
+{
+    const hero = req.body
+    const len = heroes.length
+    console.log('heroes http put request')
+    console.log(hero)
+    console.log(heroes[1])
+    
+    for(let i = 0; i < len; i++)
+    {
+        if(heroes[i].id === hero.id)
+        {
+            heroes[i].name = hero.name
+        }
+    }
+    res.json(heroes)
 })
