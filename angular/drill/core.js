@@ -1,12 +1,21 @@
 const express = require('express')
+const cors = require('cors')
 const app = express()
 const server = require('http').createServer(app)
+
+//app.use(cors())
+
+const corsOp = 
+{
+    origin: "http://localhost:4200",
+    optionSuccessStatus: 200
+}
 
 server.listen(3000, () =>{
     console.log(server.address().port)
 });
 
-app.get("/heroes", function(req, res)
+app.get("/heroes", cors(corsOp), function(req, res)
 {
     console.log('heroes http get request')
     const heroes = [
@@ -21,5 +30,6 @@ app.get("/heroes", function(req, res)
         { id: 19, name: 'Magma' },
         { id: 20, name: 'Tornado' }
       ];
+      console.log(heroes)
       res.json(heroes)
 })
