@@ -43,9 +43,6 @@ app.put("/heroUpdate", cors(corsOp), function(req, res)
     const hero = req.body
     const len = heroes.length
     console.log('heroes http put request')
-    console.log(hero)
-    console.log(heroes[1])
-    
     for(let i = 0; i < len; i++)
     {
         if(heroes[i].id === hero.id)
