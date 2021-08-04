@@ -1,6 +1,5 @@
 const express = require('express')
 const cors = require('cors')
-const { stringify } = require('querystring')
 const app = express()
 const server = require('http').createServer(app)
 
@@ -36,6 +35,21 @@ app.get("/heroes", cors(corsOp), function(req, res)
     console.log('heroes http get request')
     //console.log(heroes)
     res.json(heroes)
+})
+
+app.get("/heroes/:id", function(req, res)
+{
+    const id = Number(req.params.id)
+    const len = heroes.length
+    var hero = {}
+    for(let i = 0; i<len; i++)
+    {
+        if(heroes[i].id === id)
+        {
+            hero = heroes[i]
+        }
+    }
+    res.json(hero)
 })
 
 app.put("/heroes", cors(corsOp), function(req, res)
