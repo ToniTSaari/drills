@@ -55,4 +55,10 @@ app.put("/heroes", cors(corsOp), function(req, res)
 app.post("/heroes", cors(corsOp), function(req,res)
 {
     console.log("heroes http post request")
+    const hero = req.body
+    const i = heroes.length - 1
+    const newId = heroes[i].id + 1
+    heroes.push({id: newId, name: hero.name})
+    //console.log(heroes)
+    res.json(heroes)
 })
