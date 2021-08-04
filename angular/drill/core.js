@@ -52,11 +52,26 @@ app.get("/heroes/:id", function(req, res)
     res.json(hero)
 })
 
+app.get("/heroes/:name", function(req, res)
+{
+    const name = req.params.name
+    const len = heroes.length
+    var hero = {}
+    for(let i = 0; i<len; i++)
+    {
+        if(heroes[i].name === name)
+        {
+            hero = heroes[i]
+        }
+    }
+    res.json(hero)
+})
+
 app.delete("/heroes/:id", function(req, res)
 {
     const id = Number(req.params.id)
     const len = heroes.length
-    console.log(heroes)
+    //console.log(heroes)
     for(let i = 0; i<len; i++)
     {
         if(heroes[i].id === id)
@@ -64,7 +79,7 @@ app.delete("/heroes/:id", function(req, res)
             heroes.splice(i, 1)
         }
     }
-    console.log(heroes)
+    //console.log(heroes)
     res.json(heroes)
 })
 
