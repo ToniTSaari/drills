@@ -38,7 +38,7 @@ app.get("/heroes", cors(corsOp), function(req, res)
     res.json(heroes)
 })
 
-app.put("/heroUpdate", cors(corsOp), function(req, res)
+app.put("/heroes", cors(corsOp), function(req, res)
 {
     const hero = req.body
     const len = heroes.length
@@ -51,4 +51,8 @@ app.put("/heroUpdate", cors(corsOp), function(req, res)
         }
     }
     res.json(heroes)
+})
+app.post("/heroes", cors(corsOp), function(req,res)
+{
+    console.log("heroes http post request")
 })
