@@ -52,6 +52,22 @@ app.get("/heroes/:id", function(req, res)
     res.json(hero)
 })
 
+app.delete("/heroes/:id", function(req, res)
+{
+    const id = Number(req.params.id)
+    const len = heroes.length
+    console.log(heroes)
+    for(let i = 0; i<len; i++)
+    {
+        if(heroes[i].id === id)
+        {
+            heroes.splice(i, 1)
+        }
+    }
+    console.log(heroes)
+    res.json(heroes)
+})
+
 app.put("/heroes", cors(corsOp), function(req, res)
 {
     const hero = req.body
