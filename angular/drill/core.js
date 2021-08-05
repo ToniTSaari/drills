@@ -33,11 +33,30 @@ server.listen(3000, () =>{
 app.get("/heroes", cors(corsOp), function(req, res)
 {
     console.log('heroes http get request')
-    //console.log(heroes)
-    res.json(heroes)
+    if(req.query.name)
+    {
+        console.log("heroes search")
+        const search = req.query.name.toLowerCase()
+        //console.log(search)
+        const len = heroes.length
+        var result = []
+        for(let i = 0; i<len; i++)
+        {
+            var name = heroes[i].name.toLowerCase()
+            if(name.match(search))
+            {
+                result.push(heroes[i])
+            }
+        }
+        res.json(result)
+    }
+    else
+    {
+        res.json(heroes)
+    }
 })
 
-app.get("/heroes/:id", function(req, res)
+app.get("/heroes/:id", cors(corsOp), function(req, res)
 {
     const id = Number(req.params.id)
     const len = heroes.length
@@ -52,22 +71,7 @@ app.get("/heroes/:id", function(req, res)
     res.json(hero)
 })
 
-app.get("/heroes/:name", function(req, res)
-{
-    const name = req.params.name
-    const len = heroes.length
-    var hero = {}
-    for(let i = 0; i<len; i++)
-    {
-        if(heroes[i].name === name)
-        {
-            hero = heroes[i]
-        }
-    }
-    res.json(hero)
-})
-
-app.delete("/heroes/:id", function(req, res)
+app.delete("/heroes/:id", cors(corsOp), function(req, res)
 {
     const id = Number(req.params.id)
     const len = heroes.length
@@ -95,7 +99,7 @@ app.put("/heroes", cors(corsOp), function(req, res)
             heroes[i].name = hero.name
         }
     }
-    res.json(heroes)
+    res.status(201).json(heroes)
 })
 app.post("/heroes", cors(corsOp), function(req,res)
 {
@@ -105,5 +109,5 @@ app.post("/heroes", cors(corsOp), function(req,res)
     const newId = heroes[i].id + 1
     heroes.push({id: newId, name: hero.name})
     //console.log(heroes)
-    res.json(heroes)
+    res.status(201).json(heroes)
 })
