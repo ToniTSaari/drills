@@ -1,1 +1,1 @@
-Training for various javascript frameworks, organized in their own folders
+Training for various javascript and typescript frameworks, organized in their own folders
