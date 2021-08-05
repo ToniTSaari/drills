@@ -14,3 +14,4 @@ angular/drill/src/polyfills.ts
 angular/drill/.browserslistrc
 angular/drill/.editorconfig
 angular/drill/src/test.ts
+vue/node_modules
