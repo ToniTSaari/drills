@@ -30,6 +30,29 @@
             <p>{{ message }}</p>
             <button v-on:click="reverseMessage">Reverse Message</button>
         </div>
+        <br/>
+        <div id="app6">
+            <p>{{message}}</p>
+            <input v-model="message">
+        </div>
+        <br/>
+        <div id="app7">
+            <ol>
+                <todo-item
+                    v-for="item in groceryList"
+                    v-bind:todo="item"
+                    v-bind:key="item.id"
+                ></todo-item>
+            </ol>
+        </div>
+        <br/>
+        <div id="app8">
+            <app-nav></app-nav>
+            <app-viev>
+                <app-sidebar></app-sidebar>
+                <app-content></app-content>
+            </app-viev>
+        </div>
     </body>
     <script src="vue.js"></script>
 </html>
